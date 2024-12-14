@@ -1,0 +1,15 @@
+import io.john.amiscaray.quak.core.di.provider.DependencyProvider;
+import io.john.amiscaray.test.security.di.SimpleAuthenticatorProvider;
+import io.john.amiscaray.test.security.di.SecurityConfigProvider;
+
+module my.module {
+
+    requires org.slf4j;
+    requires quak.framework.security;
+
+    exports io.john.amiscaray.test.models to backend.framework.web;
+
+    provides DependencyProvider with SimpleAuthenticatorProvider;
+
+    requires com.fasterxml.jackson.databind;
+}
