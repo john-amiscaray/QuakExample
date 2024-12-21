@@ -1,15 +1,18 @@
 package io.john.amiscaray.test.security;
 
+import io.john.amiscaray.quak.core.di.provider.annotation.ManagedType;
 import io.john.amiscaray.quak.security.auth.Authenticator;
 import io.john.amiscaray.quak.security.auth.credentials.Credentials;
 import io.john.amiscaray.quak.security.auth.principal.Principal;
 import io.john.amiscaray.quak.security.auth.principal.RoleAttachedPrincipal;
 import io.john.amiscaray.quak.security.auth.principal.role.Role;
+import io.john.amiscaray.quak.security.di.SecurityDependencyIDs;
 import io.john.amiscaray.test.security.roles.Roles;
 
 import java.time.Duration;
 import java.util.Optional;
 
+@ManagedType(dependencyName = SecurityDependencyIDs.AUTHENTICATOR_DEPENDENCY_NAME, dependencyType = Authenticator.class)
 public class SimpleAuthenticator implements Authenticator {
 
     private static final RoleAttachedPrincipal JOHN = new RoleAttachedPrincipal() {
