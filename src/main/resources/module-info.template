@@ -1,0 +1,3 @@
+module io.john.amiscaray.test {
+    requires quak.framework.security;
+}
