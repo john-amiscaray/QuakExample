@@ -2,10 +2,10 @@ package io.john.amiscaray.test.models;
 
 import io.john.amiscaray.quak.generator.api.EntityGenerator;
 import io.john.amiscaray.quak.generator.api.RestModel;
-import io.john.amiscaray.test.orm.StudentTableEntry;
+import io.john.amiscaray.test.orm.Student;
 import lombok.*;
 
-@RestModel(dataClass = StudentTableEntry.class)
+@RestModel(dataClass = Student.class)
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
@@ -17,8 +17,8 @@ public class StudentDTO {
     private Float gpa;
 
     @EntityGenerator
-    public static StudentTableEntry createDataEntry(StudentDTO dto) {
-        return new StudentTableEntry(null, dto.major, dto.name, dto.gpa);
+    public static Student toEntity(StudentDTO dto) {
+        return new Student(dto.major, dto.name, dto.gpa);
     }
 
 }
