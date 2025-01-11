@@ -5,8 +5,10 @@ module my.module {
 
     requires org.slf4j;
     requires quak.framework.security;
-
-    exports io.john.amiscaray.test.models to backend.framework.web;
+    requires bcrypt;
+    requires com.auth0.jwt;
 
     requires com.fasterxml.jackson.databind;
+
+    exports io.john.amiscaray.test.models to com.fasterxml.jackson.databind;
 }

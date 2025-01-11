@@ -1,16 +1,15 @@
 package io.john.amiscaray.test.security.di;
 
-
 import io.john.amiscaray.quak.core.di.provider.annotation.Instantiate;
 import io.john.amiscaray.quak.core.di.provider.annotation.Provide;
 import io.john.amiscaray.quak.core.di.provider.annotation.ProvidedWith;
 import io.john.amiscaray.quak.core.di.provider.annotation.Provider;
+import io.john.amiscaray.quak.security.auth.principal.role.Role;
 import io.john.amiscaray.quak.security.config.CORSConfig;
 import io.john.amiscaray.quak.security.config.EndpointMapping;
 import io.john.amiscaray.quak.security.config.SecurityConfig;
 import io.john.amiscaray.quak.security.di.AuthenticationStrategy;
 import io.john.amiscaray.quak.security.di.SecurityDependencyIDs;
-import io.john.amiscaray.test.security.roles.Roles;
 
 import java.time.Duration;
 import java.util.List;
@@ -28,10 +27,13 @@ public class SecurityConfigProvider {
     @Provide(dependencyName = SecurityDependencyIDs.SECURITY_CONFIG_DEPENDENCY_NAME)
     public SecurityConfig securityConfig() {
         return SecurityConfig.builder()
-                .securePathWithRole(new EndpointMapping("/studentdto/*", List.of(EndpointMapping.RequestMethodMatcher.ANY_MODIFYING)), List.of(Roles.admin()))
+                .securePathWithRole(new EndpointMapping(
+                        "/hello",
+                        List.of(EndpointMapping.RequestMethodMatcher.ALL)
+                ), List.of(Role.any()))
                 .securePathWithCorsConfig("/*", CORSConfig.builder()
-                        .allowOrigin("http://127.0.0.1:5500")
-                        .allowMethod("GET")
+                        .allowOrigin("*")
+                        .allowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH"))
                         .build())
                 .authenticationStrategy(AuthenticationStrategy.JWT)
                 .jwtSecretKey(jwtSecret)
