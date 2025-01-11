@@ -1,6 +1,5 @@
 package io.john.amiscaray.test.security;
 
-import com.auth0.jwt.exceptions.JWTVerificationException;
 import io.john.amiscaray.quak.core.di.provider.annotation.Instantiate;
 import io.john.amiscaray.quak.core.di.provider.annotation.ManagedType;
 import io.john.amiscaray.quak.data.DatabaseProxy;
